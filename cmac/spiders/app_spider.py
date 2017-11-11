@@ -28,15 +28,14 @@ class CmacSpider(scrapy.Spider):
                 item["date_upload"] = date_upload
                 item["name"] = article.xpath("./div/div/h2/a/text()").extract_first()
                 item["slug"] = slugify(item["name"])
-                # link = article.xpath("./div/div/h2/a/@href").extract_first()
-                # item["category"] = article.xpath("./div/div/p/span[2]/a/text()").extract()
-                print(item)
-                # yield scrapy.Request(url=link, callback=self.parse_detail, meta={'item': item})
+                link = article.xpath("./div/div/h2/a/@href").extract_first()
+                item["category"] = article.xpath("./div/div/p/span[2]/a/text()").extract()
+                yield scrapy.Request(url=link, callback=self.parse_detail, meta={'item': item})
             except:
                 pass
-        # next_page = 'https://cmacapps.com/page/{}/'.format(self.count)
-        # if next_page:
-        #     yield scrapy.Request(url=next_page, callback=self.parse)
+        next_page = 'https://cmacapps.com/page/{}/'.format(self.count)
+        if next_page:
+            yield scrapy.Request(url=next_page, callback=self.parse)
 
     def parse_detail(self, response):
         item = response.meta['item']
