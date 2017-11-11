@@ -6,13 +6,13 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 
-client = MongoClient()
-db = client.database
-table = db.macapps
+# client = MongoClient()
+# db = client.database
+# table = db.macapps
 
 class CmacPipeline(object):
     def process_item(self, item, spider):
-        dict_item = dict(item)
-        if table.find(dict_item).count() == 0:
-            table.insert_one(dict_item)
+        # dict_item = dict(item)
+        # if table.find(dict_item).count() == 0:
+        #     table.insert_one(dict_item)
         return item
