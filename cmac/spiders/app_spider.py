@@ -27,7 +27,7 @@ class CmacSpider(scrapy.Spider):
                 date_upload = datetime.strptime(date_upload, "%Y-%m-%d")
                 item["date_upload"] = date_upload
                 item["name"] = article.xpath("./div/div/h2/a/text()").extract_first()
-                # item["slug"] = slugify(item["name"])
+                item["slug"] = slugify(item["name"])
                 # link = article.xpath("./div/div/h2/a/@href").extract_first()
                 # item["category"] = article.xpath("./div/div/p/span[2]/a/text()").extract()
                 print(item)
