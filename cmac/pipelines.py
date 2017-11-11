@@ -6,9 +6,9 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 
-# client = MongoClient()
-# db = client.database
-# table = db.macapps
+client = MongoClient()
+db = client.database
+table = db.macapps
 
 class CmacPipeline(object):
     def process_item(self, item, spider):
