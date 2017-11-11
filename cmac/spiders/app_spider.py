@@ -63,7 +63,7 @@ class CmacSpider(scrapy.Spider):
             description = response.xpath("//div[@id='description']").extract_first()
             if description:
                 description = re.sub(r'https://cdn.cmacapps.com',
-                                     'http://127.0.0.1:8080/upload/q_100/https://cdn.cmacapps.com', description)
+                                     'http://isharetip.com:8080/upload/q_100/https://cdn.cmacapps.com', description)
             item["description"] = description
             item["download_link"] = response.xpath("//p[contains(@class, 'p1')]/a/@href").extract()
             yield item
