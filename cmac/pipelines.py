@@ -11,8 +11,8 @@ db = client.database
 table = db.macapps
 
 class CmacPipeline(object):
-    def process_item(self, item, spider):
+    def process_item(self, item):
         dict_item = dict(item)
-        if table.find(dict_item).count() == 0:
+        if table.find({'name': dict_item["name"]}).count() == 0:
             table.insert_one(dict_item)
         return item
